@@ -1,0 +1,24 @@
+{
+  "name": "metamask-onboarding",
+  "version": "0.1.0",
+  "description": "Tools to support MetaMask one-click onboarding",
+  "main": "dist/metamask-onboarding.cjs.js",
+  "module": "src/index.js",
+  "repository": "git@github.com:MetaMask/metamask-onboarding.git",
+  "files": [
+    "/src",
+    "/dist"
+  ],
+  "scripts": {
+    "build": "rollup --config && rollup --config rollup.config.standalone.js"
+  },
+  "dependencies": {
+    "bowser": "^2.5.4"
+  },
+  "devDependencies": {
+    "rollup": "^1.20.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "static-server": "^2.2.1"
+  }
+}
