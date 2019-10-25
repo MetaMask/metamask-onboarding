@@ -75,8 +75,6 @@ class Onboarding {
 
     if (event.data.type === 'metamask:reload') {
       return this._onMessageFromForwarder(event)
-    } else if (event.data.type === 'metamask:registrationCompleted') {
-      this.stopOnboarding()
     } else {
       console.debug(`Unknown message from '${event.origin}' with data ${JSON.stringify(event.data)}`)
     }
@@ -94,7 +92,8 @@ class Onboarding {
       this.state = ONBOARDING_STATE.REGISTERING
       await Onboarding._register()
       this.state = ONBOARDING_STATE.REGISTERED
-      event.source.postMessage({ type: 'metamask:setParentLocation', location: window.location.href }, event.origin)
+      event.source.postMessage({ type: 'metamask:registrationCompleted' }, event.origin)
+      this.stopOnboarding()
     } else if (this.state === ONBOARDING_STATE.REGISTERING) {
       console.debug('Already registering - ignoring reload message')
     } else if (this.state === ONBOARDING_STATE.REGISTERED) {
