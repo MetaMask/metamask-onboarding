@@ -1,6 +1,6 @@
 {
   "name": "metamask-onboarding",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Tools to support MetaMask one-click onboarding",
   "main": "dist/metamask-onboarding.cjs.js",
   "module": "src/index.js",
