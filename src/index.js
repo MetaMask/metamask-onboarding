@@ -61,7 +61,7 @@ class Onboarding {
     this.startOnboarding = this.startOnboarding.bind(this)
     this.stopOnboarding = this.stopOnboarding.bind(this)
 
-    window.addEventListener('message', this._onMessage.bind(this), false)
+    window.addEventListener('message', this._onMessage)
 
     if (forwarderMode === FORWARDER_MODE.INJECT && sessionStorage.getItem(REGISTRATION_IN_PROGRESS)) {
       Onboarding._injectForwarder(this.forwarderOrigin)
