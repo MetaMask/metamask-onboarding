@@ -6,10 +6,10 @@ This library will register the current page as having initiated onboarding, so t
 
 ## Installation
 
-`metamask-onboarding` is made available as either a CommonJS module, and ES6 module, or an ES5 bundle.
+`@metamask/onboarding` is made available as either a CommonJS module, and ES6 module, or an ES5 bundle.
 
-* ES6 module: `import MetamaskOnboarding from 'metamask-onboarding'`
-* ES5 module: `const MetamaskOnboarding = require('metamask-onboarding')`
+* ES6 module: `import MetamaskOnboarding from '@metamask/onboarding'`
+* ES5 module: `const MetamaskOnboarding = require('@metamask/onboarding')`
 * ES5 bundle: `dist/metamask-onboarding.bundle.js` (this can be included directly in a page)
 
 ## Usage
