@@ -22,6 +22,7 @@
     "/dist"
   ],
   "scripts": {
+    "prepare": "yarn build",
     "build": "rollup --config && rollup --config rollup.config.standalone.js"
   },
   "dependencies": {
