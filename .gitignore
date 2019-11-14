@@ -3,4 +3,5 @@
 /yarn-error.log
 
 # builds
+*.tgz
 /dist
