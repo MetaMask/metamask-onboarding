@@ -12,6 +12,7 @@
     "type": "git",
     "url": "git+ssh://git@github.com/MetaMask/metamask-onboarding.git"
   },
+  "license": "MIT",
   "files": [
     "/src",
     "/dist"
