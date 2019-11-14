@@ -12,6 +12,10 @@
     "type": "git",
     "url": "git+ssh://git@github.com/MetaMask/metamask-onboarding.git"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
   "license": "MIT",
   "files": [
     "/src",
