@@ -4,7 +4,14 @@
   "description": "Tools to support MetaMask one-click onboarding",
   "main": "dist/metamask-onboarding.cjs.js",
   "module": "src/index.js",
-  "repository": "git@github.com:MetaMask/metamask-onboarding.git",
+  "homepage": "https://github.com/MetaMask/metamask-onboarding#readme",
+  "bugs": {
+    "url": "https://github.com/MetaMask/metamask-onboarding/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/MetaMask/metamask-onboarding.git"
+  },
   "files": [
     "/src",
     "/dist"
