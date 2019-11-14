@@ -22,7 +22,7 @@
     "/dist"
   ],
   "scripts": {
-    "prepare": "npm run build",
+    "prepublishOnly": "npm run build",
     "build": "rollup --config && rollup --config rollup.config.standalone.js"
   },
   "dependencies": {
