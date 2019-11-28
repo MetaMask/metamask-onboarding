@@ -150,11 +150,7 @@ class Onboarding {
   }
 
   static async _register () {
-    if (!window.ethereum._metamask.registerOnboarding) {
-      throw new Error('Onboarding registration not supported by current version of MetaMask')
-    }
-
-    return window.ethereum._metamask.registerOnboarding()
+    return window.ethereum.send('wallet_registerOnboarding')
   }
 
   static _injectForwarder (forwarderOrigin) {
