@@ -70,7 +70,8 @@ class Onboarding {
 
   async _onMessage (event) {
     if (event.origin !== this.forwarderOrigin) {
-      return console.debug(`Ignoring non-forwarder message from '${event.origin}' with data ${JSON.stringify(event.data)}`)
+      // Ignoring non-forwarder message
+      return
     }
 
     if (event.data.type === 'metamask:reload') {
