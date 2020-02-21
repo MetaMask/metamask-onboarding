@@ -12,10 +12,6 @@ module.exports = {
     '@metamask/eslint-config',
   ],
 
-  globals: {
-    'web3': true,
-  },
-
   overrides: [{
     files: [
       '.eslintrc.js',
