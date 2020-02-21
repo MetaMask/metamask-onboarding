@@ -23,6 +23,7 @@
   ],
   "scripts": {
     "prepublishOnly": "npm run build",
+    "lint": "eslint .",
     "build": "rollup --config && rollup --config rollup.config.standalone.js"
   },
   "dependencies": {
