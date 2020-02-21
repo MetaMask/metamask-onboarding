@@ -23,19 +23,24 @@
   ],
   "scripts": {
     "prepublishOnly": "npm run build",
-    "lint": "eslint .",
+    "lint": "eslint --ext .ts,.js .",
     "build": "rollup --config && rollup --config rollup.config.standalone.js"
   },
   "dependencies": {
-    "bowser": "^2.5.4"
+    "bowser": "^2.5.4",
+    "tslib": "^1.11.0"
   },
   "devDependencies": {
     "@metamask/eslint-config": "^2.0.0",
+    "@rollup/plugin-commonjs": "^11.0.2",
+    "@rollup/plugin-node-resolve": "^7.1.1",
+    "@rollup/plugin-typescript": "^3.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.20.0",
+    "@typescript-eslint/parser": "^2.20.0",
     "eslint": "^6.8.0",
     "eslint-plugin-import": "^2.20.1",
-    "rollup": "^1.20.3",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "static-server": "^2.2.1"
+    "rollup": "^1.31.1",
+    "static-server": "^2.2.1",
+    "typescript": "^3.9.2"
   }
 }

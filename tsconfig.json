@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "module": "ES6",
+    "sourceMap": true,
+    "strict": true,
+    "target": "es5",
+    "lib": [
+      "DOM",
+      "ES2016"
+    ],
+    // See https://rollupjs.org/guide/en/#installation
+    "types": []
+  },
+  "include": [
+    "./**/*.ts"
+  ]
+}
