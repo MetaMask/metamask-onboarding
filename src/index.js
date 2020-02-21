@@ -36,6 +36,7 @@ const FORWARDER_ID = 'FORWARDER_ID'
  */
 
 class Onboarding {
+
   /**
    *
    * @param {OnboardingOptions} [options] - Options for configuring onboarding
@@ -51,7 +52,7 @@ class Onboarding {
     if (browser) {
       this.downloadUrl = EXTENSION_DOWNLOAD_URL[browser]
     } else {
-      this.downloadUrl = EXTENSION_DOWNLOAD_URL['DEFAULT']
+      this.downloadUrl = EXTENSION_DOWNLOAD_URL.DEFAULT
     }
 
     this._onMessage = this._onMessage.bind(this)
@@ -68,17 +69,18 @@ class Onboarding {
     }
   }
 
-  async _onMessage (event) {
+  _onMessage (event) {
     if (event.origin !== this.forwarderOrigin) {
       // Ignoring non-forwarder message
-      return
+      return undefined
     }
 
     if (event.data.type === 'metamask:reload') {
       return this._onMessageFromForwarder(event)
-    } else {
-      console.debug(`Unknown message from '${event.origin}' with data ${JSON.stringify(event.data)}`)
     }
+
+    console.debug(`Unknown message from '${event.origin}' with data ${JSON.stringify(event.data)}`)
+    return undefined
   }
 
   async _onMessageFromForwarder (event) {
@@ -102,6 +104,7 @@ class Onboarding {
     } else {
       throw new Error(`Unknown state: '${this.state}'`)
     }
+    return undefined
   }
 
   /**
@@ -150,7 +153,7 @@ class Onboarding {
     return Boolean(window.ethereum && window.ethereum.isMetaMask)
   }
 
-  static async _register () {
+  static _register () {
     return window.ethereum.send('wallet_registerOnboarding')
   }
 
