@@ -4,7 +4,7 @@ export default {
   output: [
     {
       file: 'dist/metamask-onboarding.cjs.js',
-      format: 'cjs'
-    }
-  ]
+      format: 'cjs',
+    },
+  ],
 }
