@@ -154,7 +154,9 @@ class Onboarding {
   }
 
   static _register () {
-    return window.ethereum.send('wallet_registerOnboarding')
+    return window.ethereum.request({
+      method: 'wallet_registerOnboarding',
+    })
   }
 
   static _injectForwarder (forwarderOrigin) {

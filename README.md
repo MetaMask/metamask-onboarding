@@ -52,7 +52,9 @@ Here is an example of an onboarding button that uses this library:
           } else {
             onboardButton.innerText = 'Connect'
             onboardButton.onclick = async () => {
-              await window.ethereum.enable()
+              await window.ethereum.request({
+                method: 'eth_requestAccounts'
+              })
             }
           }
         }
