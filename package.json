@@ -24,18 +24,27 @@
   "scripts": {
     "prepublishOnly": "npm run build",
     "lint": "eslint .",
-    "build": "rollup --config && rollup --config rollup.config.standalone.js"
+    "build": "rollup --config && rollup --config rollup.config.standalone.js",
+    "test": "node ./node_modules/mocha/bin/mocha -r ts-node/register --ui bdd **/*.spec.ts"
   },
+  "type": "module",
   "dependencies": {
     "bowser": "^2.5.4"
   },
   "devDependencies": {
     "@metamask/eslint-config": "^2.0.0",
+    "@types/bowser": "^1.1.1",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^14.0.1",
+    "chai": "^4.2.0",
     "eslint": "^6.8.0",
     "eslint-plugin-import": "^2.20.1",
+    "mocha": "^7.1.2",
     "rollup": "^1.20.3",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "static-server": "^2.2.1"
+    "static-server": "^2.2.1",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.9.2"
   }
 }
