@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "UMD",
+    "experimentalDecorators": true,
+    "declaration": true,
+    "moduleResolution": "node",
+    "strict": true
+  },
+  "exclude": ["./test"]
+}
