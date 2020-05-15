@@ -24,7 +24,7 @@
   "scripts": {
     "prepublishOnly": "npm run build",
     "lint": "eslint .",
-    "build": "rollup --config && rollup --config rollup.config.standalone.js",
+    "build": "tsc && rollup --config && rollup --config rollup.config.standalone.js",
     "test": "node ./node_modules/mocha/bin/mocha -r ts-node/register --ui bdd **/*.spec.ts"
   },
   "type": "module",
