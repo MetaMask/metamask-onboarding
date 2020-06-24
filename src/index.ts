@@ -157,6 +157,7 @@ export default class Onboarding {
     const iframe = document.createElement('iframe');
     iframe.setAttribute('height', '0');
     iframe.setAttribute('width', '0');
+    iframe.setAttribute('style', 'display: none;');
     iframe.setAttribute('src', forwarderOrigin);
     iframe.setAttribute('id', FORWARDER_ID);
     container.insertBefore(iframe, container.children[0]);
