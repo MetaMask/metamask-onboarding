@@ -57,7 +57,7 @@ export default class Onboarding {
 
     window.addEventListener('message', this._onMessage);
 
-    if (forwarderMode === FORWARDER_MODE.INJECT && sessionStorage.getItem(REGISTRATION_IN_PROGRESS)) {
+    if (forwarderMode === FORWARDER_MODE.INJECT && sessionStorage.getItem(REGISTRATION_IN_PROGRESS) === 'true') {
       Onboarding._injectForwarder(this.forwarderOrigin);
     }
   }
@@ -118,7 +118,7 @@ export default class Onboarding {
    * onboarding completes before the forwarder has registered.
    */
   stopOnboarding () {
-    if (sessionStorage.getItem(REGISTRATION_IN_PROGRESS)) {
+    if (sessionStorage.getItem(REGISTRATION_IN_PROGRESS) === 'true') {
       if (this.forwarderMode === FORWARDER_MODE.INJECT) {
         console.debug('Removing forwarder');
         Onboarding._removeForwarder();
