@@ -8,15 +8,15 @@ This library will register the current page as having initiated onboarding, so t
 
 `@metamask/onboarding` is made available as either a CommonJS module, and ES6 module, or an ES5 bundle.
 
-* ES6 module: `import MetamaskOnboarding from '@metamask/onboarding'`
-* ES5 module: `const MetamaskOnboarding = require('@metamask/onboarding')`
+* ES6 module: `import MetaMaskOnboarding from '@metamask/onboarding'`
+* ES5 module: `const MetaMaskOnboarding = require('@metamask/onboarding')`
 * ES5 bundle: `dist/metamask-onboarding.bundle.js` (this can be included directly in a page)
 
 ## Usage
 
 Minimal example:
 ```
-const onboarding = new MetamaskOnboarding()
+const onboarding = new MetaMaskOnboarding()
 onboarding.startOnboarding()
 ```
 
@@ -35,12 +35,12 @@ Here is an example of an onboarding button that uses this library:
     <script src="./metamask-onboarding.bundle.js"></script>
     <script>
       window.addEventListener('DOMContentLoaded', () => {
-        const onboarding = new MetamaskOnboarding()
+        const onboarding = new MetaMaskOnboarding()
         const onboardButton = document.getElementById('onboard')
         let accounts
 
         const updateButton = () => {
-          if (!MetamaskOnboarding.isMetaMaskInstalled()) {
+          if (!MetaMaskOnboarding.isMetaMaskInstalled()) {
             onboardButton.innerText = 'Click here to install MetaMask!'
             onboardButton.onclick = () => {
               onboardButton.innerText = 'Onboarding in progress'
@@ -62,7 +62,7 @@ Here is an example of an onboarding button that uses this library:
         }
 
         updateButton()
-        if (MetamaskOnboarding.isMetaMaskInstalled()) {
+        if (MetaMaskOnboarding.isMetaMaskInstalled()) {
           window.ethereum.on('accountsChanged', (newAccounts) => {
             accounts = newAccounts
             updateButton()
