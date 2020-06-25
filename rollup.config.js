@@ -24,7 +24,7 @@ const config = [
     output: [{
       file: 'dist/metamask-onboarding.bundle.js',
       format: 'iife',
-      name: 'MetamaskOnboarding',
+      name: 'MetaMaskOnboarding',
     }],
     plugins: [
       typescript(),
