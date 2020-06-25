@@ -23,15 +23,17 @@ onboarding.startOnboarding()
 Here is an example of an onboarding button that uses this library:
 
 ```
-<html>
+<!DOCTYPE html>
+<html lang="en-CA">
   <head>
+    <title>MetaMask Onboarding Example</title>
     <meta charset="UTF-8">
   </head>
   <body>
     <h1>Sample Dapp</h1>
-    <button id='onboard'>Loading...</button>
-    <script type="text/javascript" src="./metamask-onboarding.bundle.js"></script>
-    <script type="text/javascript">
+    <button id="onboard">Loading...</button>
+    <script src="./metamask-onboarding.bundle.js"></script>
+    <script>
       window.addEventListener('DOMContentLoaded', () => {
         const onboarding = new MetamaskOnboarding()
         const onboardButton = document.getElementById('onboard')
