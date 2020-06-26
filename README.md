@@ -14,65 +14,7 @@ This library will register the current page as having initiated onboarding, so t
 
 ## Usage
 
-Minimal example:
-```
-const onboarding = new MetaMaskOnboarding()
-onboarding.startOnboarding()
-```
-
-Here is an example of an onboarding button that uses this library:
-
-```
-<!DOCTYPE html>
-<html lang="en-CA">
-  <head>
-    <title>MetaMask Onboarding Example</title>
-    <meta charset="UTF-8">
-  </head>
-  <body>
-    <h1>Sample Dapp</h1>
-    <button id="onboard">Loading...</button>
-    <script src="./metamask-onboarding.bundle.js"></script>
-    <script>
-      window.addEventListener('DOMContentLoaded', () => {
-        const onboarding = new MetaMaskOnboarding()
-        const onboardButton = document.getElementById('onboard')
-        let accounts
-
-        const updateButton = () => {
-          if (!MetaMaskOnboarding.isMetaMaskInstalled()) {
-            onboardButton.innerText = 'Click here to install MetaMask!'
-            onboardButton.onclick = () => {
-              onboardButton.innerText = 'Onboarding in progress'
-              onboardButton.disabled = true
-              onboarding.startOnboarding()
-            }
-          } else if (accounts && accounts.length > 0) {
-            onboardButton.innerText = 'Connected'
-            onboardButton.disabled = true
-            onboarding.stopOnboarding()
-          } else {
-            onboardButton.innerText = 'Connect'
-            onboardButton.onclick = async () => {
-              await window.ethereum.request({
-                method: 'eth_requestAccounts'
-              })
-            }
-          }
-        }
-
-        updateButton()
-        if (MetaMaskOnboarding.isMetaMaskInstalled()) {
-          window.ethereum.on('accountsChanged', (newAccounts) => {
-            accounts = newAccounts
-            updateButton()
-          })
-        }
-      })
-    </script>
-  </body>
-</html>
-```
+[See _§ Onboarding Library_ on the MetaMask Docs website.](https://docs.metamask.io/guide/onboarding-library.html)
 
 ## Release & Publishing
 
