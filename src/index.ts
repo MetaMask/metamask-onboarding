@@ -1,3 +1,12 @@
+/**
+ * A library to initiate the MetaMask onboarding process.
+ *
+ * @remarks
+ * See {@link https://docs.metamask.io/guide/onboarding-library.html|the MetaMask Docs website} for usage information.
+ *
+ * @packageDocumentation
+ */
+
 import * as Bowser from 'bowser';
 
 const ONBOARDING_STATE = {
@@ -14,10 +23,13 @@ const EXTENSION_DOWNLOAD_URL = {
   DEFAULT: 'https://metamask.io',
 };
 
-const FORWARDER_MODE = {
-  INJECT: 'INJECT' as const,
-  OPEN_TAB: 'OPEN_TAB' as const,
-};
+/**
+ * @internal
+ */
+enum FORWARDER_MODE {
+  INJECT = 'INJECT',
+  OPEN_TAB = 'OPEN_TAB',
+}
 
 // sessionStorage key
 const REGISTRATION_IN_PROGRESS = 'REGISTRATION_IN_PROGRESS';
@@ -25,7 +37,16 @@ const REGISTRATION_IN_PROGRESS = 'REGISTRATION_IN_PROGRESS';
 // forwarder iframe id
 const FORWARDER_ID = 'FORWARDER_ID';
 
+/**
+ * @public
+ */
 export default class Onboarding {
+
+  /**
+   * @public
+   */
+  public static FORWARDER_MODE = FORWARDER_MODE;
+
   private readonly forwarderOrigin: string;
 
   private readonly downloadUrl: string;
@@ -34,6 +55,12 @@ export default class Onboarding {
 
   private state: keyof typeof ONBOARDING_STATE;
 
+  /**
+   * @param forwarderOrigin - the origin to use
+   * @param forwarderMode - the forwarder mode from {@link Onboarding.FORWARDER_MODE}
+   *
+   * @public
+   */
   constructor ({ forwarderOrigin = 'https://fwd.metamask.io', forwarderMode = FORWARDER_MODE.INJECT } = {}) {
     this.forwarderOrigin = forwarderOrigin;
     this.forwarderMode = forwarderMode;
@@ -62,6 +89,9 @@ export default class Onboarding {
     }
   }
 
+  /**
+   * @internal
+   */
   _onMessage (event: MessageEvent) {
     if (event.origin !== this.forwarderOrigin) {
       // Ignoring non-forwarder message
@@ -76,6 +106,9 @@ export default class Onboarding {
     return undefined;
   }
 
+  /**
+   * @internal
+   */
   async _onMessageFromForwarder (event: MessageEvent) {
     if (this.state === ONBOARDING_STATE.RELOADING) {
       console.debug('Ignoring message while reloading');
@@ -104,6 +137,8 @@ export default class Onboarding {
 
   /**
    * Starts onboarding by opening the MetaMask download page and the Onboarding forwarder
+   *
+   * @public
    */
   startOnboarding () {
     sessionStorage.setItem(REGISTRATION_IN_PROGRESS, 'true');
@@ -114,8 +149,11 @@ export default class Onboarding {
   /**
    * Stops onboarding registration, including removing the injected forwarder (if any)
    *
+   * @remarks
    * Typically this function is not necessary, but it can be useful for cases where
    * onboarding completes before the forwarder has registered.
+   *
+   * @public
    */
   stopOnboarding () {
     if (sessionStorage.getItem(REGISTRATION_IN_PROGRESS) === 'true') {
@@ -127,6 +165,9 @@ export default class Onboarding {
     }
   }
 
+  /**
+   * @internal
+   */
   _openForwarder () {
     if (this.forwarderMode === FORWARDER_MODE.OPEN_TAB) {
       window.open(this.forwarderOrigin, '_blank');
@@ -135,23 +176,34 @@ export default class Onboarding {
     }
   }
 
+  /**
+   * @internal
+   */
   _openDownloadPage () {
     window.open(this.downloadUrl, '_blank');
   }
 
   /**
    * Checks whether the MetaMask extension is installed
+   *
+   * @public
    */
   static isMetaMaskInstalled () {
     return Boolean((window as any).ethereum && (window as any).ethereum.isMetaMask);
   }
 
+  /**
+   * @internal
+   */
   static _register () {
     return (window as any).ethereum.request({
       method: 'wallet_registerOnboarding',
     });
   }
 
+  /**
+   * @internal
+   */
   static _injectForwarder (forwarderOrigin: string) {
     const container = document.body;
     const iframe = document.createElement('iframe');
@@ -163,10 +215,16 @@ export default class Onboarding {
     container.insertBefore(iframe, container.children[0]);
   }
 
+  /**
+   * @internal
+   */
   static _removeForwarder () {
     document.getElementById(FORWARDER_ID)?.remove();
   }
 
+  /**
+   * @internal
+   */
   static _detectBrowser () {
     const browserInfo = Bowser.parse(window.navigator.userAgent);
     if (browserInfo.browser.name === 'Firefox') {

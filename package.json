@@ -25,14 +25,18 @@
   "scripts": {
     "prepublishOnly": "npm run build",
     "lint": "eslint --ext .ts,.js .",
-    "build": "rollup --config"
+    "build": "rollup --config",
+    "build:docs": "tsc --project . && api-extractor run --local && api-documenter markdown -i .api-extractor/temp -o docs"
   },
   "dependencies": {
     "bowser": "^2.9.0",
     "tslib": "^1.11.0"
   },
+  "typings": "src/index.d.ts",
   "devDependencies": {
     "@metamask/eslint-config": "^2.0.0",
+    "@microsoft/api-documenter": "^7.8.17",
+    "@microsoft/api-extractor": "^7.8.15",
     "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-node-resolve": "^7.1.1",
     "@typescript-eslint/eslint-plugin": "^2.20.0",

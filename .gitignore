@@ -1,7 +1,16 @@
+# API Extractor
+/temp
+
 # Yarn
 /node_modules
 /yarn-error.log
 
 # builds
+*.js
+*.js.map
+*.d.ts
+*.d.ts.map
+!.eslintrc.js
+!rollup.config.js
 *.tgz
 /dist
