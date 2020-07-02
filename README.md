@@ -22,7 +22,7 @@ Assuming `import MetaMaskOnboarding from '@metamask/onboarding'`, the following 
 
 ### `MetaMaskOnboarding.isMetaMaskInstalled()`
 
-Returns the installation status of MetaMask.
+Returns `true` if a MetaMask-like provider is detected, or `false` otherwise. Note that we don't provide any guarantee that this is correct, as non-MetaMask wallets can disguise themselves as MetaMask.
 
 ### `new MetaMaskOnboarding()`
 
@@ -35,11 +35,11 @@ The constructor accepts an optional options bag with the following:
 
 ### `MetaMaskOnboarding#startOnboarding()`
 
-Starts onboarding by opening the MetaMask download page and the Onboarding forwarder.
+Starts onboarding by opening the MetaMask download page and waiting for MetaMask to be installed. Once the MetaMask extension installation is detected, a message will be sent to MetaMask to register the current site as the onboarding initiator.
 
 ### `MetaMaskOnboarding#stopOnboarding()`
 
-Stops onboarding registration, including removing the injected forwarder (if any).
+Stops onboarding registration, including removing the injected `iframe` (if any).
 
 ## Release & Publishing
 
