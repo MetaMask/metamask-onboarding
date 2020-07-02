@@ -10,7 +10,7 @@ const ONBOARDING_STATE = {
 
 const EXTENSION_DOWNLOAD_URL = {
   CHROME: 'https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn',
-  FIREFOX: 'https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/',
+  FIREFOX: 'https://addons.mozilla.org/firefox/addon/ether-metamask/',
   DEFAULT: 'https://metamask.io',
 };
 
