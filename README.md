@@ -20,11 +20,15 @@ This library will register the current page as having initiated onboarding, so t
 
 Assuming `import MetaMaskOnboarding from '@metamask/onboarding'`, the following API is available.
 
-### `MetaMaskOnboarding.isMetaMaskInstalled()`
+### Static methods
+
+#### `MetaMaskOnboarding.isMetaMaskInstalled()`
 
 Returns `true` if a MetaMask-like provider is detected, or `false` otherwise. Note that we don't provide any guarantee that this is correct, as non-MetaMask wallets can disguise themselves as MetaMask.
 
-### `MetaMaskOnboarding.FORWARDER_MODE`
+### Static properties
+
+#### `MetaMaskOnboarding.FORWARDER_MODE`
 
 A set of constants for each of the available forwarder modes.
 
@@ -33,20 +37,24 @@ A set of constants for each of the available forwarder modes.
 | `INJECT` | Inject a `iframe` to that will refresh until MetaMask has installed |
 | `OPEN_TAB` | Open a tab to a new page that will refresh until MetaMask has installed—this is only useful if the client app has disallowed `iframes` |
 
-### `new MetaMaskOnboarding()`
+### Constructor
+
+#### `new MetaMaskOnboarding()`
 
 The constructor accepts an optional options bag with the following:
 
 | Option | Description |
 | :-- | :-- |
 | `forwarderOrigin` | **Optional**, defaults to `'https://fwd.metamask.io'` |
-| `forwarderMode` | **Optional**, defaults to `MetaMaskOnboarding.FORWARDER_MODE.INJECT` |
+| `forwarderMode` | One of the available forwarder modes. **Optional**, defaults to `MetaMaskOnboarding.FORWARDER_MODE.INJECT`. |
 
-### `MetaMaskOnboarding#startOnboarding()`
+### Instance methods
+
+#### `startOnboarding()`
 
 Starts onboarding by opening the MetaMask download page and waiting for MetaMask to be installed. Once the MetaMask extension installation is detected, a message will be sent to MetaMask to register the current site as the onboarding initiator.
 
-### `MetaMaskOnboarding#stopOnboarding()`
+#### `stopOnboarding()`
 
 Stops onboarding registration, including removing the injected `iframe` (if any).
 
