@@ -14,11 +14,6 @@ const EXTENSION_DOWNLOAD_URL = {
   DEFAULT: 'https://metamask.io',
 };
 
-const FORWARDER_MODE = {
-  INJECT: 'INJECT' as const,
-  OPEN_TAB: 'OPEN_TAB' as const,
-};
-
 // sessionStorage key
 const REGISTRATION_IN_PROGRESS = 'REGISTRATION_IN_PROGRESS';
 
@@ -26,15 +21,20 @@ const REGISTRATION_IN_PROGRESS = 'REGISTRATION_IN_PROGRESS';
 const FORWARDER_ID = 'FORWARDER_ID';
 
 export default class Onboarding {
+  static FORWARDER_MODE = {
+    INJECT: 'INJECT' as const,
+    OPEN_TAB: 'OPEN_TAB' as const,
+  };
+
   private readonly forwarderOrigin: string;
 
   private readonly downloadUrl: string;
 
-  private readonly forwarderMode: keyof typeof FORWARDER_MODE;
+  private readonly forwarderMode: keyof typeof Onboarding.FORWARDER_MODE;
 
   private state: keyof typeof ONBOARDING_STATE;
 
-  constructor ({ forwarderOrigin = 'https://fwd.metamask.io', forwarderMode = FORWARDER_MODE.INJECT } = {}) {
+  constructor ({ forwarderOrigin = 'https://fwd.metamask.io', forwarderMode = Onboarding.FORWARDER_MODE.INJECT } = {}) {
     this.forwarderOrigin = forwarderOrigin;
     this.forwarderMode = forwarderMode;
     this.state = Onboarding.isMetaMaskInstalled() ?
@@ -57,7 +57,7 @@ export default class Onboarding {
 
     window.addEventListener('message', this._onMessage);
 
-    if (forwarderMode === FORWARDER_MODE.INJECT && sessionStorage.getItem(REGISTRATION_IN_PROGRESS) === 'true') {
+    if (forwarderMode === Onboarding.FORWARDER_MODE.INJECT && sessionStorage.getItem(REGISTRATION_IN_PROGRESS) === 'true') {
       Onboarding._injectForwarder(this.forwarderOrigin);
     }
   }
@@ -119,7 +119,7 @@ export default class Onboarding {
    */
   stopOnboarding () {
     if (sessionStorage.getItem(REGISTRATION_IN_PROGRESS) === 'true') {
-      if (this.forwarderMode === FORWARDER_MODE.INJECT) {
+      if (this.forwarderMode === Onboarding.FORWARDER_MODE.INJECT) {
         console.debug('Removing forwarder');
         Onboarding._removeForwarder();
       }
@@ -128,7 +128,7 @@ export default class Onboarding {
   }
 
   _openForwarder () {
-    if (this.forwarderMode === FORWARDER_MODE.OPEN_TAB) {
+    if (this.forwarderMode === Onboarding.FORWARDER_MODE.OPEN_TAB) {
       window.open(this.forwarderOrigin, '_blank');
     } else {
       Onboarding._injectForwarder(this.forwarderOrigin);
