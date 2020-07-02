@@ -29,7 +29,7 @@ Returns the installation status of MetaMask.
 The constructor accepts an optional options bag with the following:
 
 | Option | Description |
-| --- | --- |
+| :-- | :-- |
 | `forwarderOrigin` | **Optional**, defaults to `'https://fwd.metamask.io'` |
 | `forwarderMode` | **Optional**, defaults to `MetaMaskOnboarding.FORWARDER_MODE.INJECT` |
 
