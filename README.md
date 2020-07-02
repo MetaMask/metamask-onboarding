@@ -14,7 +14,32 @@ This library will register the current page as having initiated onboarding, so t
 
 ## Usage
 
-[See _§ Onboarding Library_ on the MetaMask Docs website.](https://docs.metamask.io/guide/onboarding-library.html)
+[See _§ Onboarding Library_ on the MetaMask Docs website for examples.](https://docs.metamask.io/guide/onboarding-library.html)
+
+## API
+
+Assuming `import MetaMaskOnboarding from '@metamask/onboarding'`, the following API is available.
+
+### `MetaMaskOnboarding.isMetaMaskInstalled()`
+
+Returns the installation status of MetaMask.
+
+### `new MetaMaskOnboarding()`
+
+The constructor accepts an optional options bag with the following:
+
+| Option | Description |
+| --- | --- |
+| `forwarderOrigin` | **Optional**, defaults to `'https://fwd.metamask.io'` |
+| `forwarderMode` | **Optional**, defaults to `MetaMaskOnboarding.FORWARDER_MODE.INJECT` |
+
+### `MetaMaskOnboarding#startOnboarding()`
+
+Starts onboarding by opening the MetaMask download page and the Onboarding forwarder.
+
+### `MetaMaskOnboarding#stopOnboarding()`
+
+Stops onboarding registration, including removing the injected forwarder (if any).
 
 ## Release & Publishing
 
