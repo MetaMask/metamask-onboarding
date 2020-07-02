@@ -45,7 +45,7 @@ The constructor accepts an optional options bag with the following:
 
 | Option | Description |
 | :-- | :-- |
-| `forwarderOrigin` | **Optional**, defaults to `'https://fwd.metamask.io'` |
+| `forwarderOrigin` | Override the forwarder URL, useful for testing. **Optional**, defaults to `'https://fwd.metamask.io'`. |
 | `forwarderMode` | One of the available forwarder modes. **Optional**, defaults to `MetaMaskOnboarding.FORWARDER_MODE.INJECT`. |
 
 ### Instance methods
