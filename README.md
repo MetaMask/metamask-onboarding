@@ -24,6 +24,15 @@ Assuming `import MetaMaskOnboarding from '@metamask/onboarding'`, the following 
 
 Returns `true` if a MetaMask-like provider is detected, or `false` otherwise. Note that we don't provide any guarantee that this is correct, as non-MetaMask wallets can disguise themselves as MetaMask.
 
+### `MetaMaskOnboarding.FORWARDER_MODE`
+
+A set of constants for each of the available forwarder modes.
+
+| Constant | Description |
+| :-- | :-- |
+| `INJECT` | Inject a `iframe` to that will refresh until MetaMask has installed |
+| `OPEN_TAB` | Open a tab to a new page that will refresh until MetaMask has installed—this is only useful if the client app has disallowed `iframes` |
+
 ### `new MetaMaskOnboarding()`
 
 The constructor accepts an optional options bag with the following:
