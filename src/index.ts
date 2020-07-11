@@ -76,30 +76,35 @@ export default class Onboarding {
     return undefined;
   }
 
-  async _onMessageFromForwarder (event: MessageEvent) {
-    if (this.state === ONBOARDING_STATE.RELOADING) {
-      console.debug('Ignoring message while reloading');
-    } else if (this.state === ONBOARDING_STATE.NOT_INSTALLED) {
-      console.debug('Reloading now to register with MetaMask');
-      this.state = ONBOARDING_STATE.RELOADING;
-      return location.reload();
-    } else if (this.state === ONBOARDING_STATE.INSTALLED) {
-      console.debug('Registering with MetaMask');
-      this.state = ONBOARDING_STATE.REGISTERING;
-      await Onboarding._register();
-      this.state = ONBOARDING_STATE.REGISTERED;
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      event.source?.postMessage({ type: 'metamask:registrationCompleted' }, event.origin);
-      this.stopOnboarding();
-    } else if (this.state === ONBOARDING_STATE.REGISTERING) {
-      console.debug('Already registering - ignoring reload message');
-    } else if (this.state === ONBOARDING_STATE.REGISTERED) {
-      console.debug('Already registered - ignoring reload message');
-    } else {
-      throw new Error(`Unknown state: '${this.state}'`);
+  //TODO: Ask about what type is the 'event' parameter
+  async _onMessageFromForwarder (event: any) {
+    switch(this.state) {
+      case ONBOARDING_STATE.RELOADING:
+        console.debug('Ignoring message while reloading')
+        break;
+      case ONBOARDING_STATE.NOT_INSTALLED:
+        console.debug('Reloading now to register with MetaMask')
+        this.state = ONBOARDING_STATE.RELOADING
+        return location.reload();
+
+      case ONBOARDING_STATE.INSTALLED:
+        console.debug('Registering with MetaMask')
+        this.state = ONBOARDING_STATE.REGISTERING
+        await Onboarding._register()
+        this.state = ONBOARDING_STATE.REGISTERED
+        event.source.postMessage({ type: 'metamask:registrationCompleted' }, event.origin)
+        this.stopOnboarding()
+        break;
+      case ONBOARDING_STATE.REGISTERING:
+        console.debug('Already registering - ignoring reload message')
+        break;
+      case ONBOARDING_STATE.REGISTERED:
+        console.debug('Already registered - ignoring reload message')
+        break;
+      default:
+        throw new Error(`Unknown state: '${this.state}'`)
     }
-    return undefined;
+    return undefined
   }
 
   /**
