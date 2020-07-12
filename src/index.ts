@@ -99,8 +99,7 @@ export class Onboarding implements OnboardingConstructorForwarderInterface {
     return undefined
   }
 
-  //TODO: Ask about what type is the 'event' parameter
-  async _onMessageFromForwarder (event: any) {
+  async _onMessageFromForwarder (event: MessageEvent) {
     switch(this.state) {
       case ONBOARDING_STATE.RELOADING:
         console.debug('Ignoring message while reloading')
@@ -115,7 +114,9 @@ export class Onboarding implements OnboardingConstructorForwarderInterface {
         this.state = ONBOARDING_STATE.REGISTERING
         await Onboarding._register()
         this.state = ONBOARDING_STATE.REGISTERED
-        event.source.postMessage({ type: 'metamask:registrationCompleted' }, event.origin)
+        if (event.source instanceof Window) {
+          event.source.postMessage({ type: 'metamask:registrationCompleted' }, event.origin);
+        }
         this.stopOnboarding()
         break;
       case ONBOARDING_STATE.REGISTERING:
