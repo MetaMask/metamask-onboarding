@@ -1,9 +1,10 @@
 {
   "name": "@metamask/onboarding",
-  "version": "0.3.0",
-  "description": "Tools to support MetaMask one-click onboarding",
+  "version": "1.0.0",
+  "description": "Assists with onboarding new MetaMask users",
   "main": "dist/metamask-onboarding.cjs.js",
-  "module": "src/index.js",
+  "module": "dist/metamask-onboarding.es.js",
+  "types": "dist/index.d.ts",
   "homepage": "https://github.com/MetaMask/metamask-onboarding#readme",
   "bugs": {
     "url": "https://github.com/MetaMask/metamask-onboarding/issues"
@@ -23,28 +24,25 @@
   ],
   "scripts": {
     "prepublishOnly": "npm run build",
-    "lint": "eslint .",
-    "build": "tsc && rollup --config && rollup --config rollup.config.standalone.js",
-    "test": "node ./node_modules/mocha/bin/mocha -r ts-node/register --ui bdd **/*.spec.ts"
+    "lint": "eslint --ext .ts,.js .",
+    "build": "rollup --config"
   },
   "type": "module",
   "dependencies": {
-    "bowser": "^2.5.4"
+    "bowser": "^2.9.0",
+    "tslib": "^1.11.0"
   },
   "devDependencies": {
     "@metamask/eslint-config": "^2.0.0",
-    "@types/bowser": "^1.1.1",
-    "@types/mocha": "^7.0.2",
-    "@types/node": "^14.0.1",
-    "chai": "^4.2.0",
+    "@rollup/plugin-commonjs": "^11.0.2",
+    "@rollup/plugin-node-resolve": "^7.1.1",
+    "@typescript-eslint/eslint-plugin": "^2.20.0",
+    "@typescript-eslint/parser": "^2.20.0",
     "eslint": "^6.8.0",
     "eslint-plugin-import": "^2.20.1",
-    "mocha": "^7.1.2",
-    "rollup": "^1.20.3",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup": "^2.18.0",
+    "rollup-plugin-typescript2": "^0.27.1",
     "static-server": "^2.2.1",
-    "ts-node": "^8.10.1",
-    "typescript": "^3.9.2"
+    "typescript": "^3.9.5"
   }
 }

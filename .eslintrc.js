@@ -1,15 +1,11 @@
 module.exports = {
-  parserOptions: {
-    'sourceType': 'module',
-    'ecmaVersion': 2017,
-  },
-
   env: {
     'browser': true,
   },
 
   extends: [
     '@metamask/eslint-config',
+    '@metamask/eslint-config/config/typescript',
   ],
 
   overrides: [{
@@ -23,4 +19,4 @@ module.exports = {
       '@metamask/eslint-config/config/nodejs',
     ],
   }],
-}
+};
