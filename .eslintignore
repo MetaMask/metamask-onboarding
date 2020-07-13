@@ -2,3 +2,5 @@
 !rollup.config.js
 !rollup.config.standalone.js
 dist
+src/*.d.ts
+src/*.js
