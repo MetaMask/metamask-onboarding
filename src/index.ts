@@ -76,6 +76,10 @@ export default class Onboarding {
     return undefined;
   }
 
+  _onMessageUnknownStateError (state: never): never {
+    throw new Error(`Unknown state: '${state}'`);
+  }
+
   async _onMessageFromForwarder (event: MessageEvent) {
     switch (this.state) {
       case ONBOARDING_STATE.RELOADING:
@@ -84,7 +88,8 @@ export default class Onboarding {
       case ONBOARDING_STATE.NOT_INSTALLED:
         console.debug('Reloading now to register with MetaMask');
         this.state = ONBOARDING_STATE.RELOADING;
-        return location.reload();
+        location.reload();
+        break;
 
       case ONBOARDING_STATE.INSTALLED:
         console.debug('Registering with MetaMask');
@@ -101,9 +106,8 @@ export default class Onboarding {
         console.debug('Already registered - ignoring reload message');
         break;
       default:
-        throw new Error(`Unknown state: '${this.state}'`);
+        this._onMessageUnknownStateError(this.state);
     }
-    return undefined;
   }
 
   /**
