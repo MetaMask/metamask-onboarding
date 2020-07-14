@@ -91,9 +91,7 @@ export default class Onboarding {
         this.state = ONBOARDING_STATE.REGISTERING;
         await Onboarding._register();
         this.state = ONBOARDING_STATE.REGISTERED;
-        if (event.source instanceof Window) {
-          event.source.postMessage({ type: 'metamask:registrationCompleted' }, event.origin);
-        }
+        (event.source as Window).postMessage({ type: 'metamask:registrationCompleted' }, event.origin);
         this.stopOnboarding();
         break;
       case ONBOARDING_STATE.REGISTERING:
