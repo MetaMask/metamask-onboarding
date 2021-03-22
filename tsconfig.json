@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true,
     "declaration": true,
     "module": "ES6",
     "sourceMap": true,
