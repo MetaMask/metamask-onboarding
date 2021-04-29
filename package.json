@@ -22,8 +22,11 @@
     "/src",
     "/dist"
   ],
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "scripts": {
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "yarn build",
     "lint": "eslint --ext .ts,.js .",
     "build": "rollup --config"
   },
