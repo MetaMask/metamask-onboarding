@@ -1,6 +1,5 @@
 import typescript from 'rollup-plugin-typescript2';
 import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
 
 const config = [
   {
@@ -29,11 +28,6 @@ const config = [
     plugins: [
       typescript(),
       resolve(),
-      commonjs({
-        namedExports: {
-          'bowser': ['parse'],
-        },
-      }),
     ],
   }];
 
