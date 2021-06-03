@@ -26,6 +26,7 @@
     "node": ">=12.0.0"
   },
   "scripts": {
+    "setup": "yarn install && yarn allow-scripts",
     "prepublishOnly": "yarn build",
     "lint": "eslint --ext .ts,.js .",
     "build": "rollup --config"
@@ -34,6 +35,7 @@
     "bowser": "^2.9.0"
   },
   "devDependencies": {
+    "@lavamoat/allow-scripts": "^1.0.6",
     "@metamask/eslint-config": "^3.1.0",
     "@rollup/plugin-node-resolve": "^7.1.1",
     "@typescript-eslint/eslint-plugin": "^2.20.0",
@@ -43,5 +45,10 @@
     "rollup": "^2.18.0",
     "rollup-plugin-typescript2": "^0.27.1",
     "typescript": "^3.9.5"
+  },
+  "lavamoat": {
+    "allowScripts": {
+      "@lavamoat/preinstall-always-fail": false
+    }
   }
 }
