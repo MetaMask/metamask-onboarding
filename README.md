@@ -8,9 +8,9 @@ This library will register the current page as having initiated onboarding, so t
 
 `@metamask/onboarding` is made available as either a CommonJS module, and ES6 module, or an ES5 bundle.
 
-* ES6 module: `import MetaMaskOnboarding from '@metamask/onboarding'`
-* ES5 module: `const MetaMaskOnboarding = require('@metamask/onboarding')`
-* ES5 bundle: `dist/metamask-onboarding.bundle.js` (this can be included directly in a page)
+- ES6 module: `import MetaMaskOnboarding from '@metamask/onboarding'`
+- ES5 module: `const MetaMaskOnboarding = require('@metamask/onboarding')`
+- ES5 bundle: `dist/metamask-onboarding.bundle.js` (this can be included directly in a page)
 
 ## Usage
 
@@ -32,9 +32,9 @@ Returns `true` if a MetaMask-like provider is detected, or `false` otherwise. No
 
 A set of constants for each of the available forwarder modes.
 
-| Constant | Description |
-| :-- | :-- |
-| `INJECT` | Inject a `iframe` to that will refresh until MetaMask has installed |
+| Constant   | Description                                                                                                                            |
+| :--------- | :------------------------------------------------------------------------------------------------------------------------------------- |
+| `INJECT`   | Inject a `iframe` to that will refresh until MetaMask has installed                                                                    |
 | `OPEN_TAB` | Open a tab to a new page that will refresh until MetaMask has installed—this is only useful if the client app has disallowed `iframes` |
 
 ### Constructor
@@ -43,10 +43,10 @@ A set of constants for each of the available forwarder modes.
 
 The constructor accepts an optional options bag with the following:
 
-| Option | Description |
-| :-- | :-- |
-| `forwarderOrigin` | Override the forwarder URL, useful for testing. **Optional**, defaults to `'https://fwd.metamask.io'`. |
-| `forwarderMode` | One of the available forwarder modes. **Optional**, defaults to `MetaMaskOnboarding.FORWARDER_MODE.INJECT`. |
+| Option            | Description                                                                                                 |
+| :---------------- | :---------------------------------------------------------------------------------------------------------- |
+| `forwarderOrigin` | Override the forwarder URL, useful for testing. **Optional**, defaults to `'https://fwd.metamask.io'`.      |
+| `forwarderMode`   | One of the available forwarder modes. **Optional**, defaults to `MetaMaskOnboarding.FORWARDER_MODE.INJECT`. |
 
 ### Instance methods
 

@@ -15,20 +15,19 @@ const config = [
         format: 'es',
       },
     ],
-    plugins: [
-      typescript(),
-    ],
-  }, {
+    plugins: [typescript()],
+  },
+  {
     input: 'src/index.ts',
-    output: [{
-      file: 'dist/metamask-onboarding.bundle.js',
-      format: 'iife',
-      name: 'MetaMaskOnboarding',
-    }],
-    plugins: [
-      typescript(),
-      resolve(),
+    output: [
+      {
+        file: 'dist/metamask-onboarding.bundle.js',
+        format: 'iife',
+        name: 'MetaMaskOnboarding',
+      },
     ],
-  }];
+    plugins: [typescript(), resolve()],
+  },
+];
 
 export default config;

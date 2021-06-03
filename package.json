@@ -28,7 +28,10 @@
   "scripts": {
     "setup": "yarn install && yarn allow-scripts",
     "prepublishOnly": "yarn build",
-    "lint": "eslint --ext .ts,.js .",
+    "lint:eslint": "eslint . --cache --ext js,ts",
+    "lint:misc": "prettier '**/*.json' '**/*.md' '!CHANGELOG.md' '**/*.yml' --ignore-path .gitignore",
+    "lint": "yarn lint:eslint && yarn lint:misc --check",
+    "lint:fix": "yarn lint:eslint --fix && yarn lint:misc --write",
     "build": "rollup --config"
   },
   "dependencies": {
@@ -36,12 +39,18 @@
   },
   "devDependencies": {
     "@lavamoat/allow-scripts": "^1.0.6",
-    "@metamask/eslint-config": "^3.1.0",
+    "@metamask/eslint-config": "^6.0.0",
+    "@metamask/eslint-config-nodejs": "^6.0.0",
+    "@metamask/eslint-config-typescript": "^6.0.0",
     "@rollup/plugin-node-resolve": "^7.1.1",
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "@typescript-eslint/parser": "^4.26.0",
-    "eslint": "^6.8.0",
-    "eslint-plugin-import": "^2.20.1",
+    "eslint": "^7.27.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "^2.3.0",
     "rollup": "^2.18.0",
     "rollup-plugin-typescript2": "^0.30.0",
     "typescript": "^4.3.2"
