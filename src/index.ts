@@ -1,4 +1,4 @@
-import * as Bowser from 'bowser';
+import Bowser from 'bowser';
 
 const ONBOARDING_STATE = {
   INSTALLED: 'INSTALLED' as const,
