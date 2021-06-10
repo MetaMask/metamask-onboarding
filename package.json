@@ -38,13 +38,13 @@
     "@lavamoat/allow-scripts": "^1.0.6",
     "@metamask/eslint-config": "^3.1.0",
     "@rollup/plugin-node-resolve": "^7.1.1",
-    "@typescript-eslint/eslint-plugin": "^2.20.0",
-    "@typescript-eslint/parser": "^2.20.0",
+    "@typescript-eslint/eslint-plugin": "^4.26.0",
+    "@typescript-eslint/parser": "^4.26.0",
     "eslint": "^6.8.0",
     "eslint-plugin-import": "^2.20.1",
     "rollup": "^2.18.0",
-    "rollup-plugin-typescript2": "^0.27.1",
-    "typescript": "^3.9.5"
+    "rollup-plugin-typescript2": "^0.30.0",
+    "typescript": "^4.3.2"
   },
   "lavamoat": {
     "allowScripts": {
