@@ -1,6 +1,6 @@
 {
   "name": "@metamask/onboarding",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Assists with onboarding new MetaMask users",
   "main": "dist/metamask-onboarding.cjs.js",
   "module": "dist/metamask-onboarding.es.js",
