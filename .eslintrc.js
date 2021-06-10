@@ -1,22 +1,28 @@
 module.exports = {
-  env: {
-    'browser': true,
-  },
+  extends: ['@metamask/eslint-config'],
 
-  extends: [
-    '@metamask/eslint-config',
-    '@metamask/eslint-config/config/typescript',
+  overrides: [
+    {
+      files: ['*.js'],
+      extends: ['@metamask/eslint-config-nodejs'],
+    },
+    {
+      files: ['rollup.config.js'],
+      parserOptions: {
+        sourceType: 'module',
+      },
+    },
+    {
+      files: ['src/**/*.ts'],
+      env: {
+        browser: true,
+      },
+    },
+    {
+      files: ['*.ts'],
+      extends: ['@metamask/eslint-config-typescript'],
+    },
   ],
 
-  overrides: [{
-    files: [
-      '.eslintrc.js',
-    ],
-    parserOptions: {
-      sourceType: 'script',
-    },
-    extends: [
-      '@metamask/eslint-config/config/nodejs',
-    ],
-  }],
+  ignorePatterns: ['!.eslintrc.js', '!.prettierrc.js', 'dist'],
 };

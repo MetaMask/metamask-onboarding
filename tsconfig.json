@@ -7,12 +7,7 @@
     "sourceMap": true,
     "strict": true,
     "target": "es5",
-    "lib": [
-      "DOM",
-      "ES2016"
-    ]
+    "lib": ["DOM", "ES2016"]
   },
-  "include": [
-    "./**/*.ts"
-  ]
+  "include": ["./**/*.ts"]
 }
