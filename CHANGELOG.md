@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.1]
 ### Changed
-- Update various dependencies ([#49](https://github.com/MetaMask/metamask-onboarding/pull/49), [#68](https://github.com/MetaMask/metamask-onboarding/pull/68), [#71](https://github.com/MetaMask/metamask-onboarding/pull/71))
+- Update various dependencies ([#49](https://github.com/MetaMask/metamask-onboarding/pull/49), [#68](https://github.com/MetaMask/metamask-onboarding/pull/68), [#71](https://github.com/MetaMask/metamask-onboarding/pull/71), [#60](https://github.com/MetaMask/metamask-onboarding/pull/60), [#61](https://github.com/MetaMask/metamask-onboarding/pull/61))
 - Use `@lavamoat/allow-scripts` for improved security ([#67](https://github.com/MetaMask/metamask-onboarding/pull/67))
 - Remove unused dependencies ([#66](https://github.com/MetaMask/metamask-onboarding/pull/66))
 - Switch from CircleCI to GitHub Actions ([#64](https://github.com/MetaMask/metamask-onboarding/pull/64))
@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Refactor to improve readability ([#45](https://github.com/MetaMask/metamask-onboarding/pull/45), [#47](https://github.com/MetaMask/metamask-onboarding/pull/47), [#48](https://github.com/MetaMask/metamask-onboarding/pull/48))
 
 ### Fixed
-- Fix import of `bowser` package ([#57](https://github.com/MetaMask/metamask-onboarding/pull/57), [#60](https://github.com/MetaMask/metamask-onboarding/pull/60), [#61](https://github.com/MetaMask/metamask-onboarding/pull/61), [#63](https://github.com/MetaMask/metamask-onboarding/pull/63))
+- Fix import of `bowser` package ([#57](https://github.com/MetaMask/metamask-onboarding/pull/57), [#63](https://github.com/MetaMask/metamask-onboarding/pull/63))
 
 ## [1.0.0] - 2020-07-02
 ### Changed
