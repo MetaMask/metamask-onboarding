@@ -1,17 +1,28 @@
 import Bowser from 'bowser';
 
-const ONBOARDING_STATE = {
-  INSTALLED: 'INSTALLED' as const,
-  NOT_INSTALLED: 'NOT_INSTALLED' as const,
-  REGISTERED: 'REGISTERED' as const,
-  REGISTERING: 'REGISTERING' as const,
-  RELOADING: 'RELOADING' as const,
+const enum PLATFORM {
+  DESKTOP,
+  MOBILE,
+}
+
+const enum ONBOARDING_STATE {
+  INSTALLED,
+  NOT_INSTALLED,
+  REGISTERED,
+  REGISTERING,
+  RELOADING,
 };
 
-const EXTENSION_DOWNLOAD_URL = {
-  CHROME:
-    'https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn',
-  FIREFOX: 'https://addons.mozilla.org/firefox/addon/ether-metamask/',
+const METAMASK_DOWNLOAD_URL = {
+  DESKTOP: {
+    CHROME:
+      'https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn',
+    FIREFOX: 'https://addons.mozilla.org/firefox/addon/ether-metamask',
+  },
+  MOBILE: {
+    IOS: 'https://apps.apple.com/us/app/metamask-blockchain-wallet/id1438144202',
+    ANDROID: 'market://details?id=io.metamask',
+  },
   DEFAULT: 'https://metamask.io',
 };
 
@@ -29,11 +40,13 @@ export default class Onboarding {
 
   private readonly forwarderOrigin: string;
 
+  private readonly isPlatformDesktop: boolean;
+
   private readonly downloadUrl: string;
 
   private readonly forwarderMode: keyof typeof Onboarding.FORWARDER_MODE;
 
-  private state: keyof typeof ONBOARDING_STATE;
+  private state: ONBOARDING_STATE;
 
   constructor({
     forwarderOrigin = 'https://fwd.metamask.io',
@@ -45,12 +58,9 @@ export default class Onboarding {
       ? ONBOARDING_STATE.INSTALLED
       : ONBOARDING_STATE.NOT_INSTALLED;
 
-    const browser = Onboarding._detectBrowser();
-    if (browser) {
-      this.downloadUrl = EXTENSION_DOWNLOAD_URL[browser];
-    } else {
-      this.downloadUrl = EXTENSION_DOWNLOAD_URL.DEFAULT;
-    }
+    const platformType = this._getPlatformType();
+    this.isPlatformDesktop = platformType === PLATFORM.DESKTOP;
+    this.downloadUrl = this._getDownloadUrl();
 
     this._onMessage = this._onMessage.bind(this);
     this._onMessageFromForwarder = this._onMessageFromForwarder.bind(this);
@@ -125,12 +135,17 @@ export default class Onboarding {
   }
 
   /**
-   * Starts onboarding by opening the MetaMask download page and the Onboarding forwarder
+   * Starts onboarding by opening the MetaMask download page and the Onboarding forwarder (desktop)
+   * Starts onboarding by opening the MetaMask app in Play Store / App Store (mobile)
    */
   startOnboarding() {
-    sessionStorage.setItem(REGISTRATION_IN_PROGRESS, 'true');
-    this._openDownloadPage();
-    this._openForwarder();
+    if (this.isPlatformDesktop) {
+      sessionStorage.setItem(REGISTRATION_IN_PROGRESS, 'true');
+      this._openDownloadPage();
+      this._openForwarder();
+    } else {
+      this._openDownloadPage();
+    }
   }
 
   /**
@@ -191,15 +206,31 @@ export default class Onboarding {
     document.getElementById(FORWARDER_ID)?.remove();
   }
 
-  static _detectBrowser() {
+  _getDownloadUrl() {
     const browserInfo = Bowser.parse(window.navigator.userAgent);
-    if (browserInfo.browser.name === 'Firefox') {
-      return 'FIREFOX';
-    } else if (
-      ['Chrome', 'Chromium'].includes(browserInfo.browser.name || '')
-    ) {
-      return 'CHROME';
+    const browserName = browserInfo.browser.name;
+    const { DESKTOP, MOBILE, DEFAULT } = METAMASK_DOWNLOAD_URL;
+
+    if (this.isPlatformDesktop) {
+      if (browserName === 'Firefox') {
+        return DESKTOP.FIREFOX;
+      } else if (['Chrome', 'Chromium'].includes(browserName || '')) {
+        return DESKTOP.CHROME;
+      }
+
+      return DEFAULT;
     }
-    return null;
+
+    const isIOS = browserInfo.platform.vendor === 'Apple';
+    if (isIOS) return MOBILE.IOS;
+    return MOBILE.ANDROID;
+  }
+
+  _getPlatformType() {
+    const browserInfo = Bowser.parse(window.navigator.userAgent);
+    const isPlatformDesktop = browserInfo.platform.type === 'desktop';
+
+    if (isPlatformDesktop) return PLATFORM.DESKTOP;
+    else return PLATFORM.MOBILE;
   }
 }
