@@ -1,17 +1,17 @@
 {
-  "name": "@metamask/onboarding",
-  "version": "1.0.1",
-  "description": "Assists with onboarding new MetaMask users",
-  "main": "dist/metamask-onboarding.cjs.js",
-  "module": "dist/metamask-onboarding.es.js",
+  "name": "tallyho-onboarding",
+  "version": "1.0.0",
+  "description": "Assists with onboarding new Tally users",
+  "main": "dist/tallyho-onboarding.cjs.js",
+  "module": "dist/tallyho-onboarding.es.js",
   "types": "dist/index.d.ts",
-  "homepage": "https://github.com/MetaMask/metamask-onboarding#readme",
+  "homepage": "https://github.com/0xzoz/tallyho-onboarding#readme",
   "bugs": {
-    "url": "https://github.com/MetaMask/metamask-onboarding/issues"
+    "url": "https://github.com/0xzoz/tallyho-onboarding/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/MetaMask/metamask-onboarding.git"
+    "url": "https://github.com/0xzoz/tallyho-onboarding.git"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

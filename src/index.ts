@@ -10,9 +10,9 @@ const ONBOARDING_STATE = {
 
 const EXTENSION_DOWNLOAD_URL = {
   CHROME:
-    'https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn',
-  FIREFOX: 'https://addons.mozilla.org/firefox/addon/ether-metamask/',
-  DEFAULT: 'https://metamask.io',
+    'https://chrome.google.com/webstore/detail/tally-ho/eajafomhmkipbjmfmhebemolkcicgfmd',
+  FIREFOX: 'https://addons.mozilla.org/en-US/firefox/addon/tally/',
+  DEFAULT: 'https://tally.cash/',
 };
 
 // sessionStorage key
@@ -41,7 +41,7 @@ export default class Onboarding {
   } = {}) {
     this.forwarderOrigin = forwarderOrigin;
     this.forwarderMode = forwarderMode;
-    this.state = Onboarding.isMetaMaskInstalled()
+    this.state = Onboarding.isTallyHoInstalled()
       ? ONBOARDING_STATE.INSTALLED
       : ONBOARDING_STATE.NOT_INSTALLED;
 
@@ -75,7 +75,7 @@ export default class Onboarding {
       return undefined;
     }
 
-    if (event.data.type === 'metamask:reload') {
+    if (event.data.type === 'tallyho:reload') {
       return this._onMessageFromForwarder(event);
     }
 
@@ -97,18 +97,18 @@ export default class Onboarding {
         console.debug('Ignoring message while reloading');
         break;
       case ONBOARDING_STATE.NOT_INSTALLED:
-        console.debug('Reloading now to register with MetaMask');
+        console.debug('Reloading now to register with Tally Ho');
         this.state = ONBOARDING_STATE.RELOADING;
         location.reload();
         break;
 
       case ONBOARDING_STATE.INSTALLED:
-        console.debug('Registering with MetaMask');
+        console.debug('Registering with Tally Ho');
         this.state = ONBOARDING_STATE.REGISTERING;
         await Onboarding._register();
         this.state = ONBOARDING_STATE.REGISTERED;
         (event.source as Window).postMessage(
-          { type: 'metamask:registrationCompleted' },
+          { type: 'tallyho:registrationCompleted' },
           event.origin,
         );
         this.stopOnboarding();
@@ -125,7 +125,7 @@ export default class Onboarding {
   }
 
   /**
-   * Starts onboarding by opening the MetaMask download page and the Onboarding forwarder
+   * Starts onboarding by opening the Tally download page and the Onboarding forwarder
    */
   startOnboarding() {
     sessionStorage.setItem(REGISTRATION_IN_PROGRESS, 'true');
@@ -162,11 +162,11 @@ export default class Onboarding {
   }
 
   /**
-   * Checks whether the MetaMask extension is installed
+   * Checks whether the Tally extension is installed
    */
-  static isMetaMaskInstalled() {
+  static isTallyHoInstalled() {
     return Boolean(
-      (window as any).ethereum && (window as any).ethereum.isMetaMask,
+      (window as any).ethereum && (window as any).ethereum.isTally,
     );
   }
 
