@@ -9,10 +9,12 @@ const config = [
       {
         file: 'dist/metamask-onboarding.cjs.js',
         format: 'cjs',
+        sourcemap: true,
       },
       {
         file: 'dist/metamask-onboarding.es.js',
         format: 'es',
+        sourcemap: true,
       },
     ],
     plugins: [typescript()],
